@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Form Pengajuan Aspirasi - Desa Maju</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Form resmi pengajuan aspirasi warga Desa Maju.">
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 text-gray-800">
+
+<!-- Navbar -->
+<nav class="bg-white shadow-md py-4 px-6">
+    <div class="max-w-6xl mx-auto flex justify-between items-center">
+        <h1 class="font-bold text-xl text-green-700">Desa Maju</h1>
+        <a href="aspirasi.html" class="text-gray-600 hover:text-green-600">← Kembali</a>
+    </div>
+</nav>
+
+<!-- Header -->
+<section class="bg-gradient-to-r from-green-600 to-green-500 text-white py-12">
+    <div class="max-w-4xl mx-auto px-6">
+        <h2 class="text-3xl font-bold mb-2">Form Pengajuan Aspirasi</h2>
+        <p class="opacity-90">
+            Silakan isi formulir berikut dengan jelas dan sopan. 
+            Aspirasi akan diproses sesuai prosedur yang berlaku.
+        </p>
+    </div>
+</section>
+
+<!-- Form Container -->
+<section class="max-w-4xl mx-auto py-12 px-6">
+    <div class="bg-white shadow-xl rounded-2xl p-8">
+
+        <!-- Nomor Tiket -->
+        <div class="mb-6 bg-gray-50 p-4 rounded-lg border">
+            <p class="text-sm text-gray-600">Nomor Referensi Aspirasi:</p>
+            <p id="ticketNumber" class="font-bold text-green-700 text-lg"></p>
+        </div>
+
+        <form action="#" method="POST" class="space-y-6">
+
+            <!-- Nama -->
+            <div>
+                <label class="block font-medium mb-2">Nama (Opsional)</label>
+                <input type="text" id="nama"
+                    class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none"
+                    placeholder="Isi jika tidak ingin anonim">
+            </div>
+
+            <!-- Kategori -->
+            <div>
+                <label class="block font-medium mb-2">Kategori Aspirasi</label>
+                <select class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none">
+                    <option>Saran</option>
+                    <option>Kritik</option>
+                    <option>Keluhan</option>
+                </select>
+            </div>
+
+            <!-- Lokasi (opsional tapi terlihat profesional) -->
+            <div>
+                <label class="block font-medium mb-2">Lokasi Kejadian (Opsional)</label>
+                <input type="text"
+                    class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none"
+                    placeholder="Contoh: RT 02 / Balai Desa / Jalan Raya Timur">
+            </div>
+
+            <!-- Isi Aspirasi -->
+            <div>
+                <label class="block font-medium mb-2">Isi Aspirasi</label>
+                <textarea rows="6"
+                    class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none"
+                    placeholder="Tuliskan aspirasi secara jelas dan sopan..." required></textarea>
+            </div>
+
+            <!-- Checkbox Anonim -->
+            <div class="flex items-center space-x-2">
+                <input type="checkbox" id="anonim" class="accent-green-600">
+                <label for="anonim" class="text-sm">Kirim sebagai anonim</label>
+            </div>
+
+            <!-- Button -->
+            <button type="submit"
+                class="w-full bg-green-700 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition shadow-md">
+                Kirim Aspirasi
+            </button>
+
+        </form>
+
+        <!-- Info kecil -->
+        <p class="text-xs text-gray-500 mt-6 text-center">
+            Dengan mengirimkan formulir ini, Anda menyetujui ketentuan etika penyampaian aspirasi.
+        </p>
+
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-400 text-center py-6">
+    © 2026 Desa Maju - Sistem Informasi Desa
+</footer>
+
+<!-- JS Nomor Tiket -->
+<script>
+    function generateTicket() {
+        const year = new Date().getFullYear();
+        const random = Math.floor(Math.random() * 9000) + 1000;
+        return `ASP-${year}-${random}`;
+    }
+
+    document.getElementById("ticketNumber").innerText = generateTicket();
+
+    // Jika anonim dicentang, kosongkan nama
+    document.getElementById("anonim").addEventListener("change", function() {
+        const namaInput = document.getElementById("nama");
+        if (this.checked) {
+            namaInput.value = "";
+            namaInput.disabled = true;
+            namaInput.placeholder = "Dikirim sebagai anonim";
+        } else {
+            namaInput.disabled = false;
+            namaInput.placeholder = "Isi jika tidak ingin anonim";
+        }
+    });
+</script>
+
+</body>
+</html>
