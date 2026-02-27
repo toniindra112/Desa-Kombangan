@@ -1,0 +1,361 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sistem Informasi Desa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body class="bg-gray-50 text-gray-700 antialiased pt-20">
+    <!-- Navbar -->
+    <nav
+      class="fixed top-0 left-0 w-full backdrop-blur-md bg-white/70 border-b border-gray-100 z-50"
+    >
+      <div
+        class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center"
+      >
+        <!-- Logo -->
+        <h1 class="text-xl font-bold text-green-700 tracking-wide">
+          Desa Kombangan
+        </h1>
+
+        <!-- Desktop Menu -->
+        <div
+          class="hidden md:flex items-center space-x-8 text-md font-semibold"
+        >
+          <a href="index.html.html" class="hover:text-green-700 transition"
+            >Beranda</a
+          >
+          <a href="profil.html" class="hover:text-green-700 transition"
+            >Profil</a
+          >
+          <a href="berita.html" class="hover:text-green-700 transition"
+            >Berita</a
+          >
+          <a href="aspirasi.html" class="hover:text-green-700 transition"
+            >Aspirasi</a
+          >
+          <a
+            href="kontak.html"
+            class="bg-green-700 text-white px-5 py-2 rounded-xl hover:bg-green-700 transition shadow-md"
+          >
+            Hubungi Kami
+          </a>
+        </div>
+
+        <!-- Hamburger Button -->
+        <button
+          id="menu-btn"
+          class="md:hidden text-green-700 focus:outline-none"
+        >
+          <svg
+            id="menu-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-7 w-7"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Menu -->
+      <div
+        id="mobile-menu"
+        class="hidden md:hidden px-6 pb-6 space-y-4 bg-white shadow-lg"
+      >
+        <a href="index.html.html" class="block hover:text-green-700">Beranda</a>
+        <a href="profil.html" class="block hover:text-green-700">Profil</a>
+        <a href="berita.html" class="block hover:text-green-700">Berita</a>
+        <a href="aspirasi.html" class="block hover:text-green-700">Aspirasi</a>
+        <a
+          href="kontak.html"
+          class="block bg-green-600 text-white px-4 py-2 rounded-xl text-center hover:bg-green-500 transition shadow-md"
+        >
+          Hubungi Kami
+        </a>
+      </div>
+    </nav>
+
+    <!-- Hero -->
+    <section
+      class="relative min-h-[85vh] flex items-center bg-cover bg-center"
+      style="background-image: url(&quot;bghwe.webp&quot;)"
+    >
+      <div class="absolute inset-0 bg-black/30"></div>
+
+      <div class="relative max-w-7xl mx-auto px-6 w-full">
+        <div class="max-w-2xl">
+          <span
+            class="inline-block mb-6 px-5 py-2 text-sm font-medium bg-green-200 text-green-700 rounded-full"
+          >
+            Sistem Informasi & Aspirasi Digital
+          </span>
+
+          <h1
+            class="text-4xl md:text-5xl font-bold leading-tight mb-6 text-white"
+          >
+            Sistem Informasi Desa Kombangan
+          </h1>
+
+          <p class="text-white mb-10 leading-relaxed">
+            Ruang kolaborasi terbuka bagi siapa saja yang ingin berbagi
+            pengetahuan dan tumbuh bersama.
+          </p>
+
+          <div class="flex gap-4 flex-wrap">
+            <a
+              href="#profil.html"
+              class="bg-green-600 text-white px-8 py-3 rounded-xl hover:bg-green-500 transition shadow-md"
+            >
+              Jelajahi Informasi
+            </a>
+
+            <a
+              href="#layanan"
+              class="border border-white text-white px-8 py-3 rounded-xl hover:bg-gray-100 hover:text-black transition"
+            >
+              Lihat Kegiatan
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- profil 1 -->
+
+    <section
+      class="relative pt-32 pb-28 bg-gradient-to-br from-green-50 via-white to-white overflow-hidden"
+    >
+      <!-- Background Blur Effect -->
+      <div
+        class="absolute -top-20 -left-20 w-72 h-72 bg-green-200 rounded-full blur-3xl opacity-30"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 bg-green-100 rounded-full blur-3xl opacity-40"
+      ></div>
+      <div
+        class="relative max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-start"
+      >
+        <!-- TEXT CONTENT -->
+        <!-- IMAGE -->
+
+        <div class="pt-4">
+          <span
+            class="inline-block mb-4 px-4 py-2 text-sm font-semibold bg-green-100 text-green-600 rounded-full"
+          >
+            Profile
+          </span>
+
+          <h1
+            class="text-4xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6 text-gray-900"
+          >
+            Profil
+            <span class="text-green-500">Singkat Tentang</span>
+            Desa Kombangan
+          </h1>
+
+          <p class="text-lg text-gray-600 mb-10 max-w-xl leading-relaxed">
+            Kelola inventaris desa dengan sistem terintegrasi. Pantau
+            peminjaman, kondisi aset, dan laporan secara real-time untuk
+            meningkatkan transparansi dan efisiensi.
+          </p>
+
+          <div class="flex flex-wrap gap-4">
+            <a
+              href="#"
+              class="bg-green-600 text-white px-7 py-3.5 rounded-xl hover:bg-green-500 transition duration-300 shadow-lg hover:shadow-green-200 font-semibold"
+            >
+              Lihat Selengkapnya
+            </a>
+          </div>
+
+          <!-- Statistik -->
+          <div class="grid grid-cols-2 gap-6 mt-14 max-w-md">
+            <div
+              class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition"
+            >
+              <h4 class="text-3xl font-bold text-green-500">100+</h4>
+              <p class="text-gray-500 text-sm mt-1">Kepala Keluarga Tercatat</p>
+            </div>
+            <div
+              class="bg-white p-6 rounded-2xl shadow-md hover:shadow-lg transition"
+            >
+              <h4 class="text-3xl font-bold text-green-500">1.000+</h4>
+              <p class="text-gray-500 text-sm mt-1">Penduduk Tahun 2026</p>
+            </div>
+          </div>
+        </div>
+        <div class="relative">
+          <div
+            class="rounded-3xl overflow-hidden shadow-2xl border border-gray-100"
+          >
+            <img
+              src="bghero.jpg"
+              class="w-full h-[500px] object-cover hover:scale-105 transition duration-500"
+            />
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Profil
+<section id="profil" class="py-24 bg-white text-center">
+    <div class="max-w-5xl mx-auto px-6">
+        <h3 class="text-3xl font-bold mb-6 text-gray-900">Profil Desa</h3>
+        <p class="text-gray-600 leading-relaxed">
+            Desa Kombangan merupakan desa yang menjunjung tinggi transparansi,
+            gotong royong, dan inovasi dalam pelayanan masyarakat.
+        </p>
+    </div>
+</section> -->
+
+    <!-- Berita Desa -->
+    <section id="berita" class="py-24 bg-gray-50">
+      <div class="max-w-7xl mx-auto px-6">
+        <h3 class="text-3xl font-bold text-center mb-6 text-gray-900">
+          Berita & Kegiatan Desa
+        </h3>
+        <p class="text-gray-600 leading-relaxed text-center mb-10">
+          Semua kegiatan dan infromasi terbaru di Desa Kombangan akan diunggah
+          di website ini dalam bentuk blog.
+        </p>
+        <div class="grid md:grid-cols-3 gap-10">
+          <div class="bg-white rounded-3xl shadow-md p-6">
+            <div class="w-full h-[280] overflow-hidden rounded-2xl mb-4">
+              <img
+                src="bghero.jpg"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+              <!-- Badge -->
+              <span
+                class="absolute top-4 left-4 bg-green-700 text-white text-xs px-3 py-1 rounded-full"
+              >
+                Kegiatan Desa
+              </span>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Kerja Bakti Desa</h4>
+            <p class="text-gray-500 text-sm mb-4">12 Februari 2026</p>
+            <p class="text-gray-600 mb-6">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <button
+              class="bg-green-600 text-white px-8 py-2 rounded-xl hover:bg-green-500"
+            >
+              Lihat Selengkapnya
+            </button>
+          </div>
+
+          <div class="bg-white rounded-3xl shadow-md p-6">
+            <div class="w-full h-[280] overflow-hidden rounded-2xl mb-4">
+              <img
+                src="bghero.jpg"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Musyawarah Desa</h4>
+            <p class="text-gray-500 text-sm mb-4">05 Februari 2026</p>
+            <p class="text-gray-600 mb-6">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <button
+              class="bg-green-600 text-white px-8 py-2 rounded-xl hover:bg-green-500"
+            >
+              Lihat Selengkapnya
+            </button>
+          </div>
+
+          <div class="bg-white rounded-3xl shadow-md p-6">
+            <div class="w-full h-[280] overflow-hidden rounded-2xl mb-4">
+              <img
+                src="bghero.jpg"
+                class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+              />
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Pelatihan UMKM</h4>
+            <p class="text-gray-500 text-sm mb-4">28 Januari 2026</p>
+            <p class="text-gray-600 mb-6">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
+            <button
+              class="bg-green-600 text-white px-8 py-2 rounded-xl hover:bg-green-500"
+            >
+              Lihat selengkapnya
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Layanan
+<section id="layanan" class="py-20 bg-white text-center">
+    <div class="max-w-5xl mx-auto px-6">
+        <h3 class="text-3xl font-bold mb-6 text-gray-900">Layanan Administrasi</h3>
+        <p class="text-gray-600">
+            Akses berbagai layanan administrasi desa secara online.
+        </p>
+    </div>
+</section> -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-gray-400 py-10 text-center">
+      <p class="text-white font-semibold text-lg">
+        Website Resmi Desa Kombangan
+      </p>
+      <p class="text-sm mt-2">&copy; 2026 Sistem Informasi Desa</p>
+    </footer>
+
+    <!-- Script -->
+    <script>
+      const menuBtn = document.getElementById("menu-btn");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const menuIcon = document.getElementById("menu-icon");
+      const links = mobileMenu.querySelectorAll("a");
+
+      menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+
+        // Ganti icon jadi X
+        if (mobileMenu.classList.contains("hidden")) {
+          menuIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>`;
+        } else {
+          menuIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"/>`;
+        }
+      });
+
+      // Auto close saat klik link
+      links.forEach((link) => {
+        link.addEventListener("click", () => {
+          mobileMenu.classList.add("hidden");
+          menuIcon.innerHTML = `
+                <path stroke-linecap="round" stroke-linejoin="round"
+                stroke-width="2"
+                d="M4 6h16M4 12h16M4 18h16"/>`;
+        });
+      });
+    </script>
+  </body>
+</html>
