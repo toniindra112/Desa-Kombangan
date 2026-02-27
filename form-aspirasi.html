@@ -29,7 +29,7 @@
     </div>
 </section>
 
-<!-- Form Container -->
+<!-- Form -->
 <section class="max-w-4xl mx-auto py-12 px-6">
     <div class="bg-white shadow-xl rounded-2xl p-8">
 
@@ -39,7 +39,7 @@
             <p id="ticketNumber" class="font-bold text-green-700 text-lg"></p>
         </div>
 
-        <form action="#" method="POST" class="space-y-6">
+        <form id="aspirasiForm" class="space-y-6">
 
             <!-- Nama -->
             <div>
@@ -49,30 +49,39 @@
                     placeholder="Isi jika tidak ingin anonim">
             </div>
 
+            <!-- Tanggal -->
+            <div>
+                <label class="block font-medium mb-2">Tanggal</label>
+                <input type="date" id="tanggal"
+                    class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none">
+            </div>
+
             <!-- Kategori -->
             <div>
                 <label class="block font-medium mb-2">Kategori Aspirasi</label>
-                <select class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none">
-                    <option>Saran</option>
-                    <option>Kritik</option>
-                    <option>Keluhan</option>
+                <select id="kategori"
+                    class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none">
+                    <option value="Saran">Saran</option>
+                    <option value="Kritik">Kritik</option>
+                    <option value="Keluhan">Keluhan</option>
                 </select>
             </div>
 
-            <!-- Lokasi (opsional tapi terlihat profesional) -->
+            <!-- Lokasi -->
             <div>
-                <label class="block font-medium mb-2">Lokasi Kejadian (Opsional)</label>
-                <input type="text"
+                <label class="block font-medium mb-2">Lokasi (Opsional)</label>
+                <input type="text" id="lokasi"
                     class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none"
-                    placeholder="Contoh: RT 02 / Balai Desa / Jalan Raya Timur">
+                    placeholder="Contoh: RT 02 / Depan Masjid">
             </div>
 
             <!-- Isi Aspirasi -->
             <div>
                 <label class="block font-medium mb-2">Isi Aspirasi</label>
-                <textarea rows="6"
+                <textarea id="isi" rows="6"
                     class="w-full border rounded-lg px-4 py-3 focus:ring-2 focus:ring-green-500 focus:outline-none"
                     placeholder="Tuliskan aspirasi secara jelas dan sopan..." required></textarea>
+                <p class="text-sm text-gray-500 mt-1">Minimal 20 karakter</p>
             </div>
 
             <!-- Checkbox Anonim -->
@@ -82,17 +91,15 @@
             </div>
 
             <!-- Button -->
-            <button type="submit"
+            <button type="submit" id="submitBtn"
                 class="w-full bg-green-700 text-white py-3 rounded-xl font-semibold hover:bg-green-600 transition shadow-md">
                 Kirim Aspirasi
             </button>
 
         </form>
 
-        <!-- Info kecil -->
-        <p class="text-xs text-gray-500 mt-6 text-center">
-            Dengan mengirimkan formulir ini, Anda menyetujui ketentuan etika penyampaian aspirasi.
-        </p>
+        <!-- Notifikasi -->
+        <div id="notif" class="hidden mt-6 p-4 rounded-lg text-white text-center"></div>
 
     </div>
 </section>
@@ -102,28 +109,89 @@
     © 2026 Desa Maju - Sistem Informasi Desa
 </footer>
 
-<!-- JS Nomor Tiket -->
 <script>
-    function generateTicket() {
-        const year = new Date().getFullYear();
-        const random = Math.floor(Math.random() * 9000) + 1000;
-        return `ASP-${year}-${random}`;
+
+const scriptURL = "PASTE_URL_WEB_APP_DISINI"; // GANTI DENGAN URL WEB APP
+
+const form = document.getElementById("aspirasiForm");
+const submitBtn = document.getElementById("submitBtn");
+const notif = document.getElementById("notif");
+
+function generateTicket() {
+    const year = new Date().getFullYear();
+    const random = Math.floor(Math.random() * 9000) + 1000;
+    return `ASP-${year}-${random}`;
+}
+
+document.getElementById("ticketNumber").innerText = generateTicket();
+document.getElementById("tanggal").valueAsDate = new Date();
+
+// Checkbox anonim
+document.getElementById("anonim").addEventListener("change", function() {
+    const namaInput = document.getElementById("nama");
+    if (this.checked) {
+        namaInput.value = "";
+        namaInput.disabled = true;
+        namaInput.placeholder = "Dikirim sebagai anonim";
+    } else {
+        namaInput.disabled = false;
+        namaInput.placeholder = "Isi jika tidak ingin anonim";
+    }
+});
+
+form.addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    const isi = document.getElementById("isi").value;
+
+    if (isi.length < 20) {
+        showNotif("Isi aspirasi minimal 20 karakter!", "bg-red-500");
+        return;
     }
 
-    document.getElementById("ticketNumber").innerText = generateTicket();
+    submitBtn.disabled = true;
+    submitBtn.innerText = "Mengirim...";
 
-    // Jika anonim dicentang, kosongkan nama
-    document.getElementById("anonim").addEventListener("change", function() {
-        const namaInput = document.getElementById("nama");
-        if (this.checked) {
-            namaInput.value = "";
-            namaInput.disabled = true;
-            namaInput.placeholder = "Dikirim sebagai anonim";
-        } else {
-            namaInput.disabled = false;
-            namaInput.placeholder = "Isi jika tidak ingin anonim";
-        }
+    const data = {
+        ticket: document.getElementById("ticketNumber").innerText,
+        nama: document.getElementById("nama").value || "Anonim",
+        tanggal: document.getElementById("tanggal").value,
+        kategori: document.getElementById("kategori").value,
+        lokasi: document.getElementById("lokasi").value,
+        isi: isi,
+        anonim: document.getElementById("anonim").checked ? "Ya" : "Tidak"
+    };
+
+    fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(response => {
+        showNotif("Aspirasi berhasil dikirim!", "bg-green-600");
+        form.reset();
+        document.getElementById("ticketNumber").innerText = generateTicket();
+        document.getElementById("tanggal").valueAsDate = new Date();
+    })
+    .catch(error => {
+        showNotif("Terjadi kesalahan saat mengirim.", "bg-red-500");
+    })
+    .finally(() => {
+        submitBtn.disabled = false;
+        submitBtn.innerText = "Kirim Aspirasi";
     });
+});
+
+function showNotif(message, color) {
+    notif.className = `mt-6 p-4 rounded-lg text-white text-center ${color}`;
+    notif.innerText = message;
+    notif.classList.remove("hidden");
+
+    setTimeout(() => {
+        notif.classList.add("hidden");
+    }, 4000);
+}
+
 </script>
 
 </body>
